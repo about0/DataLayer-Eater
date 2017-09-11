@@ -69,9 +69,10 @@ app.get('/', (req, res) => {
       console.log('Connected')
     }
     dbData = db.collection('dataLayers').find() || 'NO DATA'
+    console.log(db.get('dataLayers') || 'NO DATA')
   })
 
-
+  console.log(dbData)
   res.render('home', {
     json: dbData
   });
