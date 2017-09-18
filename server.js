@@ -10,7 +10,10 @@ const express = require('express'),
   ),
   io = require('socket.io')(server);
 
+const port = process.env.PORT || 7002
+
 let data = {};
+
 const allowedIDs = ['cG9iYWdt']
 
 
@@ -41,4 +44,6 @@ io.on('connection', function(client) {
   });
 });
 
-server.listen(7002);
+server.listen(port, () => {
+  console.log('App started on port:' + port)
+});
