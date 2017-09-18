@@ -12,7 +12,7 @@ const certs = {
 
 const port = process.env.PORT || 7002
 
-let data = {};
+let data = '';
 
 const allowedIDs = ['cG9iYWdt']
 
