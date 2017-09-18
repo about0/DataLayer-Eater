@@ -28,6 +28,7 @@ app.post('/post', (req, res) => {
   } else {
     io.emit('service.dataLayer.innactive')
   }
+  res.end('POST')
   console.log(data || 'No data')
 })
 
