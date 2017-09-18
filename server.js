@@ -18,12 +18,12 @@ const allowedIDs = ['cG9iYWdt']
 
 
 app.get('/', (req, res) => {
-  res.end('Tesing')
+  res.end(data)
 });
 
 app.post('/post', (req, res) => {
   if(allowedIDs.indexOf(req.query.id > -1)) {
-    data = res.body
+    data = req.body
     io.emit('service.dataLayer.received');
   } else {
     io.emit('service.dataLayer.innactive')
