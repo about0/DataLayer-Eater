@@ -1,14 +1,14 @@
 const express = require('express'),
   app = express(),
   fs = require('fs'),
-  server = require('https').createServer(
-    {
-      key: fs.readFileSync('key.pem'),
-      cert: fs.readFileSync('cert.pem')
-    },
-    app
-  ),
+  server = require('http').createServer(app),
   io = require('socket.io')(server);
+
+
+const certs = {
+  key: fs.readFileSync('key.pem'),
+  cert: fs.readFileSync('cert.pem')
+}
 
 const port = process.env.PORT || 7002
 
