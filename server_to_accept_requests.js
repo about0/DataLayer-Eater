@@ -13,8 +13,6 @@ const express = require('express'),
 const mongoURL = 'mongodb://zenderr:08201455@ds052649.mlab.com:52649/datalayer_punisher'
 app.set('view engine', 'pug');
 app.set('views', './views')
-
-
 function dbConnect(URL, data, callback) {
   MongoClient.connect(URL, (err, db) => {
     if (!err) {
