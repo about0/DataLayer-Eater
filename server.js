@@ -2,17 +2,17 @@ const express = require('express'),
   app = express(),
   fs = require('fs'),
   server = require('http').createServer(app),
-  io = require('socket.io')(server);
+  io = require('socket.io')(server)
 
 
-const certs = {
-  key: fs.readFileSync('key.pem'),
-  cert: fs.readFileSync('cert.pem')
-}
+// const certs = {
+//   key: fs.readFileSync('key.pem'),
+//   cert: fs.readFileSync('cert.pem')
+// }
 
 const port = process.env.PORT || 7002
 
-let data = '';
+let data = ''
 
 const allowedIDs = ['cG9iYWdt']
 
@@ -22,14 +22,16 @@ app.get('/', (req, res) => {
 });
 
 app.post('/post', (req, res) => {
+  console.log(req.query.id)
   if(allowedIDs.indexOf(req.query.id > -1)) {
-    data = req.body
+    data = JSON.stringify(req.body)
+    console.log(data)
     io.emit('service.dataLayer.received');
   } else {
     io.emit('service.dataLayer.innactive')
   }
   res.end('POST')
-  console.log(data || 'No data')
+  console.log(JSON.stringify(data) || 'No data')
 })
 
 io.on('connection', function(client) {
