@@ -2,7 +2,8 @@ const express = require('express'),
   app = express(),
   fs = require('fs'),
   server = require('http').createServer(app),
-  io = require('socket.io')(server)
+  io = require('socket.io')(server),
+  cors = require('cors')
 
 
 // const certs = {
@@ -18,13 +19,13 @@ let data = ''
 
 const allowedIDs = ['cG9iYWdt']
 
-app.use('cors')
+app.use(cors())
 
-server.get('/', (req, res) => {
+app.get('/', (req, res) => {
   res.end(data)
 });
 
-server.post('/post', (req, res) => {
+app.post('/post', (req, res) => {
   console.log(req.query.id)
   if(allowedIDs.indexOf(req.query.id > -1)) {
     data = JSON.stringify(req.body)
