@@ -12,16 +12,19 @@ const express = require('express'),
 
 const port = process.env.PORT || 7002
 
+
+
 let data = ''
 
 const allowedIDs = ['cG9iYWdt']
 
+app.use('cors')
 
-app.get('/', (req, res) => {
+server.get('/', (req, res) => {
   res.end(data)
 });
 
-app.post('/post', (req, res) => {
+server.post('/post', (req, res) => {
   console.log(req.query.id)
   if(allowedIDs.indexOf(req.query.id > -1)) {
     data = JSON.stringify(req.body)
